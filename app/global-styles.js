@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import backgroundImg from './images/background.jpg';
 
 const GlobalStyle = createGlobalStyle`
   html,
@@ -16,6 +17,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   #app {
+    background: url(${backgroundImg});
+    background-repeat: round;
     background-color: #fafafa;
     min-height: 100%;
     min-width: 100%;
