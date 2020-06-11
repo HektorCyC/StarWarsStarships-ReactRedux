@@ -5,6 +5,9 @@
  */
 
 import React from 'react';
+import { changePage } from '../../containers/HomePage/actions';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 import Container from 'react-bootstrap/Container';
 import styled from 'styled-components';
 import BootstrapTable from 'react-bootstrap-table-next';
@@ -16,9 +19,11 @@ const TableContainer = styled(Container)`
   margin-top: 3rem;
   border-radius: 10px;
 `;
-export default function ResultTable(props) {
+export function ResultTable(props) {
   const loading = props.loading;
   const spaceships = props.spaceships;
+  const currentPage = props.currentPage;
+
   const columns = [
     {
       dataField: 'name',
@@ -52,7 +57,7 @@ export default function ResultTable(props) {
 
   const options = {
     // custom: true,
-    totalSize: spaceships.count == undefined ? 0 : spaceships.count,
+    totalSize: spaceships.count,
     // sizePerPage: 5,
     hideSizePerPage: true,
     // hidePageListOnlyOnePage: true,
@@ -60,19 +65,37 @@ export default function ResultTable(props) {
     prePageText: 'Regresar',
     nextPageText: 'Siguiente',
     lastPageText: 'Ultima',
-    onPageChange: (page, sizePerPage) => {},
+    onPageChange: (page, sizePerPage) => {
+      props.dispatchChangePage(page);
+    },
   };
   return (
     <TableContainer>
-      {loading ? <LoadingSpinner /> : ''}
-      <BootstrapTable
-        keyField="name"
-        data={spaceships.results == undefined ? [] : spaceships.results}
-        columns={columns}
-        expandRow={expandRow}
-        noDataIndication="No hay resultados para mostrar"
-        pagination={paginationFactory(options)}
-      />
+      {loading ? (
+        <LoadingSpinner />
+      ) : (
+        <BootstrapTable
+          keyField="name"
+          data={spaceships.results == undefined ? [] : spaceships.results}
+          columns={columns}
+          expandRow={expandRow}
+          noDataIndication="No hay resultados para mostrar"
+          pagination={paginationFactory(options)}
+        />
+      )}
     </TableContainer>
   );
 }
+
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatchChangePage: (page) => dispatch(changePage(page)),
+  };
+}
+
+const withConnect = connect(
+  null,
+  mapDispatchToProps,
+);
+
+export default compose(withConnect)(ResultTable);

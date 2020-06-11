@@ -21,6 +21,12 @@ const makeLoadingSelector = () =>
     selectHomePageDomain,
     substate => substate.loading,
   );
+
+const makePageSelector = () =>
+  createSelector(
+    selectHomePageDomain,
+    substate => substate.currentPage,
+  );
 /**
  * Default selector used by HomePage
  */
@@ -32,4 +38,9 @@ const makeSelectHomePage = () =>
   );
 
 export default makeSelectHomePage;
-export { selectHomePageDomain, makeSpaceshipsSelector, makeLoadingSelector };
+export {
+  selectHomePageDomain,
+  makeSpaceshipsSelector,
+  makeLoadingSelector,
+  makePageSelector,
+};

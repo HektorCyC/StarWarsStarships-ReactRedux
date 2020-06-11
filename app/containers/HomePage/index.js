@@ -13,7 +13,7 @@ import { compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import { makeSpaceshipsSelector, makeLoadingSelector } from './selectors';
+import { makeSpaceshipsSelector, makeLoadingSelector, makePageSelector } from './selectors';
 import { loadSpaceships } from './actions';
 import reducer from './reducer';
 import saga from './saga';
@@ -57,7 +57,7 @@ export function HomePage(props) {
 
 HomePage.propTypes = {
   spaceships: PropTypes.object,
-  loading: PropTypes.bool,
+  loading: PropTypes.bool
 };
 
 const mapStateToProps = createStructuredSelector({

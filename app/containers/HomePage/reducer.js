@@ -8,12 +8,14 @@ import {
   LOAD_SPACESHIPS,
   LOAD_SPACESHIPS_SUCCESS,
   LOAD_SPACESHIPS_ERROR,
+  CHANGE_PAGE,
 } from './constants';
 
 export const initialState = {
   spaceships: {},
   loading: false,
   error: true,
+  currentPage: 1,
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -32,6 +34,11 @@ const homePageReducer = (state = initialState, action) =>
       case LOAD_SPACESHIPS_ERROR:
         draft.loading = false;
         draft.error = true;
+        break;
+      case CHANGE_PAGE:
+        draft.currentPage = action.page;
+        draft.loading = true;
+        draft.spaceships = {};
         break;
     }
   });
