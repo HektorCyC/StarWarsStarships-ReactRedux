@@ -46,7 +46,7 @@ export function HomePage(props) {
       </Row>
       <Row>
         <SpaceshipsTable
-          spaceships={spaceships.results == undefined ? [] : spaceships.results}
+          spaceships={spaceships}
           loading={loading}
         />
       </Row>

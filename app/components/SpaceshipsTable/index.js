@@ -19,6 +19,7 @@ const TableContainer = styled(Container)`
 export default function ResultTable(props) {
   const loading = props.loading;
   const spaceships = props.spaceships;
+  // console.log(spaceships.count);
   const columns = [
     {
       dataField: 'name',
@@ -55,24 +56,22 @@ export default function ResultTable(props) {
 
   const options = {
     // custom: true,
-    sizePerPage: 5,
+    totalSize: spaceships.count == undefined ? 0 : spaceships.count,
+    // sizePerPage: 5,
     hideSizePerPage: true,
-    hidePageListOnlyOnePage: true,
+    // hidePageListOnlyOnePage: true,
     firstPageText: 'Inicio',
     prePageText: 'Regresar',
     nextPageText: 'Siguiente',
     lastPageText: 'Ultima',
-    nextPageTitle: 'First page',
-    prePageTitle: 'Pre page',
-    firstPageTitle: 'Next page',
-    lastPageTitle: 'Last page',
+    onPageChange: (page, sizePerPage) => {},
   };
   return (
     <TableContainer>
       {loading ? <LoadingSpinner /> : ''}
       <BootstrapTable
         keyField="name"
-        data={spaceships}
+        data={spaceships.results == undefined ? [] : spaceships.results}
         columns={columns}
         expandRow={expandRow}
         noDataIndication="No hay resultados para mostrar"
