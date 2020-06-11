@@ -44,6 +44,8 @@ export default function ResultTable(props) {
         <p>{`Costo en creditos: ${row.cost_in_credits}`}</p>
         <p>{`Maxima velocidad atmosferica: ${row.max_atmosphering_speed}`}</p>
         <p>{`Costo en creditos: ${row.cost_in_credits}`}</p>
+        {/* TODO: ADD MODAL */}
+        <p>Ver más...</p>
       </div>
     ),
   };
