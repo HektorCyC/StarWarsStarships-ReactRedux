@@ -19,7 +19,6 @@ const TableContainer = styled(Container)`
 export default function ResultTable(props) {
   const loading = props.loading;
   const spaceships = props.spaceships;
-  // console.log(spaceships.count);
   const columns = [
     {
       dataField: 'name',
@@ -42,14 +41,9 @@ export default function ResultTable(props) {
   const expandRow = {
     renderer: row => (
       <div>
-        <p>{`This Expand row is belong to rowKey ${row.id}`}</p>
-        <p>
-          You can render anything here, also you can add additional data on
-          every row object
-        </p>
-        <p>
-          expandRow.renderer callback will pass the origin row object to you
-        </p>
+        <p>{`Costo en creditos: ${row.cost_in_credits}`}</p>
+        <p>{`Maxima velocidad atmosferica: ${row.max_atmosphering_speed}`}</p>
+        <p>{`Costo en creditos: ${row.cost_in_credits}`}</p>
       </div>
     ),
   };
