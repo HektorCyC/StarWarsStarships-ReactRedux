@@ -5,7 +5,7 @@ import request from 'utils/request';
 
 export function* loadSpaceships() {
   try {
-    const requestURL = `http://swapi.dev/api/starships/?page=1`;
+    const requestURL = `https://swapi.dev/api/starships/?page=1`;
     let data = yield call(request, requestURL);
     yield put(loadSpaceshipsSuccess(data));
   } catch (e) {
